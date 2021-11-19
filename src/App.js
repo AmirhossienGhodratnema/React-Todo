@@ -5,12 +5,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 // importing Component
 import Header from './component/header/header'
+import AddTodo from './component/AddTodo'
 
 class App extends PureComponent {
 
     state = {
         todos: [],
-        itemInput: '',
     }
 
     constructor() {
@@ -18,21 +18,15 @@ class App extends PureComponent {
     }
 
 
-    getData(e) {
-        this.setState({
-            itemInput: e.target.value,
-        })
-    };
+    AddTodoText(text) {
 
-    inputhandler(e) {
-        e.preventDefault();
         this.setState(prevState => {
             return {
-                todos: [...prevState.todos , {title : this.state.itemInput , key: Date.now() , done : false}],
-                itemInput :'',
+                todos: [...prevState.todos, { key: Date.now(), done: false , text}],
             }
         })
     }
+
 
     render() {
 
@@ -43,18 +37,7 @@ class App extends PureComponent {
                 <Header/>
 
                 <div className="Main-input bg-light d-flex justify-content-center p-5">
-                    <div>
-                        <h2>Welcome!</h2>
-                        <p>To get started, add some items to your list:</p>
-                        <form className="inp-btn d-flex justify-content-center align-content-between">
-                            <input className="form-control mr-3 btnStyle" type="text" value={this.state.itemInput}
-                                   onChange={this.getData.bind(this)}/>
-
-                            <button className="btn btn-primary" type="submit"
-                                    onClick={this.inputhandler.bind(this)}>add
-                            </button>
-                        </form>
-                    </div>
+                    <AddTodo getText={this.AddTodoText.bind(this)} />
                 </div>
 
                 <div className="d-flex flex-column justify-content-center align-items-center mt-4">
