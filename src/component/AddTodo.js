@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Header from "./header/header";
 
 
 
@@ -12,10 +11,6 @@ function AddTodo(props) {
         setText(e.target.value)
 
     };
-
-
-    console.log('text' , text)
-
 
 
     let inputhandler = (e) => {
