@@ -26,13 +26,44 @@ class App extends PureComponent {
         })
     }
 
+    deleteTodo(key) {
+        let {todos} = this.state;
+
+        let itemCheck = todos.find(item => item.key == key);
+
+        let items = todos.filter(item => item !== itemCheck);
+        this.setState({
+            todos: items,
+        })
+    }
+
+    doneTodo(key) {
+        let {todos} = this.state;
+        let itemCheck = todos.find(item => item.key == key);
+
+        console.log('itemCheck' , itemCheck);
+
+        itemCheck.done = !itemCheck.done;
+
+
+
+
+
+       this.setState((prevState) => {
+           return {
+               todos: [...prevState.todos.filter(item => item !== itemCheck) , itemCheck]
+           }
+       })
+
+    }
+
 
     render() {
 
         let {todos, done} = this.state;
 
         let todosFilter = todos.filter(item => item.done == done);
-
+        console.log('todos', todos)
 
 
         return (
@@ -60,7 +91,9 @@ class App extends PureComponent {
                         {
                             todosFilter.length == 0
                                 ? <p>not item</p>
-                                : todosFilter.map((item) => <Todo key={item.key} data={item}/>)
+                                : todosFilter.map((item) => <Todo key={item.key} DTodo={this.doneTodo.bind(this)}
+                                                                  distroy={this.deleteTodo.bind(this)}
+                                                                  data={item}/>)
                         }
 
                     </div>

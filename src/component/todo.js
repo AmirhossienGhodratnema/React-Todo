@@ -3,9 +3,16 @@ import React, { useState } from 'react';
 
 function Todo(props) {
 
-    let {data} = props;
+    let {data , distroy ,DTodo} = props;
 
-    console.log('data.done' , data.done)
+
+    let sendKey = (e) => {
+        distroy(data.key);
+    }
+
+    let DTodoSend = (e) => {
+        DTodo(data.key)
+    }
 
 
     return(
@@ -14,9 +21,9 @@ function Todo(props) {
                 className="mb-2 d-flex justify-content-between border rounded-3 p-2 align-items-center ">
                 <h5 className="m-0">{data.text}</h5>
                 <div>
-                    <button className="btn btn-success btn-sm">done</button>
+                    <button className="btn btn-success btn-sm" onClick={DTodoSend}>done</button>
                     <button className="btn btn-info btn-sm mx-2">Edit</button>
-                    <button className="btn btn-danger btn-sm">Delet</button>
+                    <button className="btn btn-danger btn-sm" onClick={sendKey}>Delet</button>
                 </div>
             </div>
         </div>

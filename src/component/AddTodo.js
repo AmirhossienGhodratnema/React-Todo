@@ -8,7 +8,7 @@ function AddTodo(props) {
     const [text, setText] = useState('');
 
     let getData = (e) => {
-        setText(e.target.value)
+        setText(e.target.value);
 
     };
 
